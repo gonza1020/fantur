@@ -1,16 +1,20 @@
 package com.agencia.fantur.service;
 
-import com.agencia.fantur.repository.IGenericRepository;
+import com.agencia.fantur.model.Client;
+import com.agencia.fantur.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 
-public class GenericService<T> implements IGenericService<T>{
+
+public abstract class BaseServiceImpl<T, ID extends Serializable> implements BaseService<T, ID > {
 
     @Autowired
-    private IGenericRepository<T> repository;
+    BaseRepository<T, ID> repository;
 
 
     @Override
@@ -21,21 +25,20 @@ public class GenericService<T> implements IGenericService<T>{
     @Override
     public T save(T entity) {
         return repository.save(entity);
-
     }
 
     @Override
-    public T findById(long id) {
+    public T findById(ID id) {
         return repository.getById(id);
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(ID id) {
         repository.deleteById(id);
     }
 
     @Override
-    public T update(T entity, long id) {
+    public T update(T entity, ID id) {
         return null;
     }
 }
