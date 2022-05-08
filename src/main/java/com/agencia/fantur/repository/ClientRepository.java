@@ -1,8 +1,9 @@
 package com.agencia.fantur.repository;
 
-import com.agencia.fantur.model.Client;
+import com.agencia.fantur.model.User;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
-public interface ClientRepository extends BaseRepository<Client, Long> {
+public interface ClientRepository extends BaseRepository<User, Long> {
 }

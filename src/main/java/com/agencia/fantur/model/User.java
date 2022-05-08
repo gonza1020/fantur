@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="client")
-public class Client {
+@Table(name="user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,6 +17,12 @@ public class Client {
     private String lastName;
     @Column(name = "email", nullable = false)
     private String email;
+    @Column(name = "userName" , nullable = false)
+    private String userName;
+    @Column(name = "passsword" , nullable = false)
+    private String password;
+    @Column(name = "rollId" , nullable = false)
+    private Long rolId;
     @Column(name = "cuit", nullable = false)
     private long cuit;
     @Column(name = "phone", nullable = false)

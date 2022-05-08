@@ -1,6 +1,6 @@
 package com.agencia.fantur.controller;
 
-import com.agencia.fantur.model.Client;
+import com.agencia.fantur.model.User;
 import com.agencia.fantur.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,32 +11,32 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/clients")
-public class ClientController implements BaseController<Client, Long> {
+public class ClientController implements BaseController<User, Long> {
 
     @Autowired
-    BaseService<Client, Long> clientService;
+    BaseService<User, Long> clientService;
 
     @PostMapping()
     @Override
-    public ResponseEntity<Client> create(@RequestBody Client entity){
+    public ResponseEntity<User> create(@RequestBody User entity){
         return new ResponseEntity<>(clientService.save(entity), HttpStatus.CREATED);
     }
 
     @GetMapping()
     @Override
-    public ResponseEntity<List<Client>> getAll() {
+    public ResponseEntity<List<User>> getAll() {
         return new ResponseEntity<>(clientService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     @Override
-    public ResponseEntity<Client> getById(@PathVariable Long id) {
+    public ResponseEntity<User> getById(@PathVariable Long id) {
         return new ResponseEntity<>(clientService.findById(id), HttpStatus.OK);
     }
 
     @PutMapping("{id}")
     @Override
-    public ResponseEntity<Client> update(@RequestBody Client entity,@PathVariable Long id) {
+    public ResponseEntity<User> update(@RequestBody User entity, @PathVariable Long id) {
         return new ResponseEntity<>(clientService.update(entity, id), HttpStatus.OK);
     }
 

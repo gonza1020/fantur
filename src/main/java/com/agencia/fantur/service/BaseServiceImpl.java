@@ -1,9 +1,8 @@
 package com.agencia.fantur.service;
 
-import com.agencia.fantur.model.Client;
+
 import com.agencia.fantur.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 
 import java.io.Serializable;
@@ -15,6 +14,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
 
     @Autowired
     BaseRepository<T, ID> repository;
+
 
 
     @Override
