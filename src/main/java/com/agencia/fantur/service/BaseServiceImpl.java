@@ -29,7 +29,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
 
     @Override
     public T findById(ID id) {
-        return repository.getById(id);
+        return  repository.findById(id).get();
     }
 
     @Override
