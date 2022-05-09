@@ -1,6 +1,7 @@
 package com.agencia.fantur.service;
 
 
+import com.agencia.fantur.exception.ResourceNotFoundException;
 import com.agencia.fantur.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,18 +28,11 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
         return repository.save(entity);
     }
 
-    @Override
-    public T findById(ID id) {
-        return  repository.findById(id).get();
-    }
 
     @Override
     public void delete(ID id) {
         repository.deleteById(id);
     }
 
-    @Override
-    public T update(T entity, ID id) {
-        return null;
-    }
+
 }
