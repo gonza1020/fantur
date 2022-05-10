@@ -1,6 +1,7 @@
 package com.agencia.fantur.service;
 
 
+import com.agencia.fantur.model.BaseEntity;
 import com.agencia.fantur.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 
 
-public abstract class BaseServiceImpl<T, ID extends Serializable> implements BaseService<T, ID > {
+public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializable> implements BaseService<T, ID > {
 
     @Autowired
     BaseRepository<T, ID> repository;
@@ -28,9 +29,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
     }
 
     @Override
-    public T findById(ID id) {
-        return  repository.findById(id).get();
-    }
+    public T findById(ID id) { return  repository.findById(id).get(); }
 
     @Override
     public void delete(ID id) {
@@ -39,6 +38,9 @@ public abstract class BaseServiceImpl<T, ID extends Serializable> implements Bas
 
     @Override
     public T update(T entity, ID id) {
-        return null;
+        T existingEntity = findById(id);
+        entity.setId(id);
+        existingEntity = repository.save(entity);
+        return existingEntity;
     }
 }

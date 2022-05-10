@@ -9,10 +9,8 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="residence")
-public class Residence {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY )
-    private long id;
+public class Residence extends BaseEntity<Long>{
+
     @Column(name = "price", nullable = false)
     private double price;
     @Column(name = "since", nullable = false)

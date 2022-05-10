@@ -7,10 +7,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name="user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity<Long>{
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
