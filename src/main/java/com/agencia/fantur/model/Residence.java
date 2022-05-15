@@ -13,7 +13,7 @@ import java.util.Date;
 public class Residence extends BaseEntity<Long> {
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private Double price;
 
     @Column(name = "since", nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Qatar")
