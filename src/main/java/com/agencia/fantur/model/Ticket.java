@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "ticket")
 public class Ticket extends BaseEntity<Long> {
-
+// Premium?
     @Column(name = "price", nullable = false)
     private Double price;
     @Column(name = "ticket_type", nullable = false)
