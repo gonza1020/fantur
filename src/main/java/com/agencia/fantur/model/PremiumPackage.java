@@ -12,9 +12,9 @@ public class PremiumPackage extends Package{
 
     private MedicalInsurances medicalInsurances;
 
+    //Habria q crear el controller donde iria esto.
     public MedicalInsurances addMedicalInsurance(MedicalInsurances medicalInsurances){
         this.medicalInsurances = medicalInsurances;
         return medicalInsurances;
     }
-
 }

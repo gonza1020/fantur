@@ -26,4 +26,6 @@ public class Ticket extends BaseEntity<Long> {
     @JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Qatar")
     private Date returnDate;
 
+    //private City from;
+    //private City destiny;
 }

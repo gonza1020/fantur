@@ -5,7 +5,7 @@ import com.agencia.fantur.model.Residence;
 import com.agencia.fantur.model.Ticket;
 
 public interface IPackage {
-    Activity addActivity(Activity activity);
-    Ticket addTicket(Ticket ticket);
-    Residence addResidence(Residence residence);
+    Activity addActivity(Activity a);
+    Ticket addTicket(Ticket t);
+    Residence addResidence(Residence r );
 }

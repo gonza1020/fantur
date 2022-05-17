@@ -20,21 +20,5 @@ public abstract class Package extends BaseEntity<Long> implements IPackage {
 
     private Residence residence;
 
-    @Override
-    public Activity addActivity(Activity activity) {
-        activities.add(activity);
-        return activity;
-    }
 
-    @Override
-    public Residence addResidence(Residence residence) {
-        this.residence = residence;
-        return residence;
-    }
-
-    @Override
-    public Ticket addTicket(Ticket ticket) {
-        tickets.add(ticket);
-        return ticket;
-    }
 }
