@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/Tickets")
+@RequestMapping("api/tickets")
 public class TicketController implements BaseController<Ticket,Long>{
 
     //ticketService tendria que ser de la clase BaseServiceImpl pero tira error.
     @Autowired
-    TicketServiceImpl ticketService;
+    BaseService<Ticket,Long> ticketService;
 
     @PostMapping
     @Override
@@ -36,10 +36,10 @@ public class TicketController implements BaseController<Ticket,Long>{
         return new ResponseEntity<>(ticketService.findById(id),HttpStatus.OK);
     }
 
-    @GetMapping("{destiny}")
-    public ResponseEntity<> getByDestiny (@PathVariable String destiny){
+/*    @GetMapping("/{destiny}")
+    public ResponseEntity<Ticket> getByDestiny (@PathVariable String destiny){
         return new ResponseEntity<>(ticketService.getByDestiny(destiny),HttpStatus.OK);
-    }
+    }*/
 
     @Override
     public ResponseEntity<Ticket> update(Ticket entity, Long aLong) {

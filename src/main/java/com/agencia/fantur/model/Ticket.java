@@ -5,9 +5,7 @@ import com.agencia.fantur.enums.TicketType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -25,6 +23,14 @@ public class Ticket extends BaseEntity<Long> {
     @Column(name = "return_date", nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Qatar")
     private Date returnDate;
+
+    @ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_from_id", nullable = false)
+    private City from;
+
+    @ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_to_id", nullable = false)
+    private City to;
 
     //private City from;
     //private City destiny;
