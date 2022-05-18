@@ -9,9 +9,10 @@ import java.util.List;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class PremiumPackage extends Package{
-    @ManyToOne(targetEntity = MedicalInsurances.class)
-    @JoinColumn(name = "insuranceId", nullable = false, referencedColumnName = "id")
-    private List<MedicalInsurances> medicalInsurances;
+
+    @ManyToOne(targetEntity = MedicalInsurances.class,fetch = FetchType.EAGER)
+    @JoinColumn(name = "insurance_Id", nullable = false)
+    private MedicalInsurances medicalInsurances;
 
 /*    //Habria q crear el controller donde iria esto.
     public MedicalInsurances addMedicalInsurance(MedicalInsurances medicalInsurances){
