@@ -20,7 +20,7 @@ public class PackageController implements BaseController <Package,Long>{
 
     @PostMapping()
     @Override
-    public ResponseEntity<Package> create(@RequestBody Package entity) {
+    public ResponseEntity<Package> create(@RequestBody Package entity) throws Exception {
         return new ResponseEntity<>(packageService.save(entity), HttpStatus.CREATED);
     }
 
