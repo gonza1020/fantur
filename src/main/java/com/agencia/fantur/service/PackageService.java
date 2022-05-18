@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PackageService extends BaseServiceImpl<Package,Long> {
-    /*TicketServiceImpl ticketService;
-    ActivityServiceImpl activityService;
-    ResidenceServiceImpl residenceService;*/
+
+
 }

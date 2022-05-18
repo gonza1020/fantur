@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
 import java.util.List;
+
 @RestController
 @RequestMapping("api/packages")
 public class PackageController implements BaseController <Package,Long>{
@@ -17,18 +18,15 @@ public class PackageController implements BaseController <Package,Long>{
     @Autowired
     private BaseService<Package,Long> packageService;
 
-    @PostMapping
+    @PostMapping()
     @Override
     public ResponseEntity<Package> create(@RequestBody Package entity) {
         return new ResponseEntity<>(packageService.save(entity), HttpStatus.CREATED);
     }
 
-    /*@PostMapping
-    public ResponseEntity<Package> createPackage (String from, String destiny){
-        return new ResponseEntity<> (packageService.create(),HttpStatus.OK);
-    }*/
 
-    @GetMapping
+
+    @GetMapping()
     @Override
     public ResponseEntity<List<Package>> getAll() {
         return new ResponseEntity<>(packageService.findAll(), HttpStatus.OK);

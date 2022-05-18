@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @SpringBootApplication
-public class FanturApplication implements CommandLineRunner {
+public class FanturApplication/* implements CommandLineRunner*/ {
 
 
 	public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class FanturApplication implements CommandLineRunner {
 
 		System.out.println("Ejecutando aplicacion en Spring Boot");
 	}
-	@Autowired
+	/*@Autowired
 	private PackageRepository packageRepository;
 	@Autowired
 	private ResidenceRepository residenceRepository;
@@ -64,7 +64,7 @@ public class FanturApplication implements CommandLineRunner {
 		ticket1.setReturnDate(new Date());
 
 
-	/*
+	*//*
 		Activity activity1 = new Activity();
 
 		activity1.setPrice(1234.0);
@@ -73,7 +73,7 @@ public class FanturApplication implements CommandLineRunner {
 
 
 		List<Activity> activities = new ArrayList<>();
-		activities.add(activity1);*/
+		activities.add(activity1);*//*
 
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket1);
@@ -83,5 +83,5 @@ public class FanturApplication implements CommandLineRunner {
 		packageStandard.setTickets(tickets);
 		//packageStandard.setActivities(activities);
 		packageRepository.save(packageStandard);
-	}
+	}*/
 }

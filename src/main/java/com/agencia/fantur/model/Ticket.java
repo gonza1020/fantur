@@ -16,6 +16,7 @@ public class Ticket extends BaseEntity<Long> {
     @Column(name = "price", nullable = false)
     private Double price;
     @Column(name = "ticket_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TicketType ticketType;
     @Column(name = "departure_date", nullable = false)
     @JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Qatar")
@@ -24,11 +25,11 @@ public class Ticket extends BaseEntity<Long> {
     @JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Qatar")
     private Date returnDate;
 
-    @ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = City.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "city_from_id", nullable = false)
     private City from;
 
-    @ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = City.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "city_to_id", nullable = false)
     private City to;
 

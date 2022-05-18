@@ -20,6 +20,7 @@ public class ResidenceController implements BaseController<Residence,Long> {
     public ResponseEntity<Residence> create( @RequestBody Residence entity) {
         return new ResponseEntity<>(residenceService.save(entity), HttpStatus.CREATED);
     }
+
     @GetMapping()
     @Override
     public ResponseEntity<List<Residence>> getAll() {

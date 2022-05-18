@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "city")
 public class City extends BaseEntity<Long>{
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name",unique = true, nullable = false)
     private String name;
     @Column(name = "zipCode", nullable = false)
     private int zipCode;

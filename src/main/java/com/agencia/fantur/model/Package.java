@@ -10,21 +10,25 @@ import java.util.List;
 @Entity
 @Table(name = "package")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Package extends BaseEntity<Long>  {
+public  class Package extends BaseEntity<Long>  {
 
     @Column(name = "price", nullable = false)
     private Double price;
 
-    @OneToMany(targetEntity = Ticket.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "packageId", nullable = false, referencedColumnName = "id")
+    @OneToMany(targetEntity = Ticket.class, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "package_ticket",
+            joinColumns = @JoinColumn(name = "package_id"),
+            inverseJoinColumns = @JoinColumn(name = "ticket_id")
+    )
     private List<Ticket> tickets;
 
 
-    @ManyToMany(targetEntity = Activity.class , cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Activity.class , fetch = FetchType.LAZY)
     @JoinColumn(name = "package_activitie", nullable = false,referencedColumnName = "id")
     private List<Activity> activities;
 
-    @OneToOne(targetEntity = Residence.class, cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = Residence.class, fetch = FetchType.LAZY)
     private Residence residence;
 
 
