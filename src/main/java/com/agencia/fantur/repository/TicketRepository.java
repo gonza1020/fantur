@@ -8,7 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface TicketRepository extends BaseRepository<Ticket,Long>{
 
     //hacer llamada a DB para buscar por destino
-    public default ResponseEntity<Ticket> getByDestiny(String destiny) {
-        return null;
-    }
 }

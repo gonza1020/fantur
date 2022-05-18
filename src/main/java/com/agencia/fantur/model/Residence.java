@@ -26,4 +26,7 @@ public class Residence extends BaseEntity<Long> {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @ManyToOne(targetEntity = Ticket.class)
+    @JoinColumn(name = "city_id")
+    private City city;
 }
