@@ -3,10 +3,11 @@ package com.agencia.fantur.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "standard_package")
+@PrimaryKeyJoinColumn(name = "id")
 public class StandardPackage extends Package{
 }
