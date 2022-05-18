@@ -27,7 +27,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     public T findById(ID id) { return  repository.findById(id).get(); }
 
     @Override
-    public T save(T entity) {
+    public T save(T entity) throws Exception {
         return repository.save(entity);
     }
 

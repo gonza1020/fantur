@@ -18,7 +18,7 @@ public class CityController implements BaseController<City,Long>{
 
     @PostMapping()
     @Override
-    public ResponseEntity<City> create(City entity) {
+    public ResponseEntity<City> create(City entity) throws Exception {
         return new ResponseEntity<>(cityService.save(entity), HttpStatus.CREATED);
     }
 

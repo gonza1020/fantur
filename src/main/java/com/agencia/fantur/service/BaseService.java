@@ -6,7 +6,7 @@ import java.util.List;
 public interface BaseService<T, ID extends Serializable>{
 
     List<T> findAll();
-    T save(T entity);
+    T save(T entity) throws Exception;
     T findById(ID id);
     void delete(ID id);
     T update(T entity, ID id);

@@ -19,8 +19,13 @@ public class ActivityController implements BaseController<Activity,Long> {
 
     @PostMapping()
     @Override
-    public ResponseEntity<Activity> create(Activity entity) {
-        return new ResponseEntity<>(activityService.save(entity), HttpStatus.CREATED);
+    public ResponseEntity<Activity> create(Activity entity) throws Exception {
+        try {
+            return new ResponseEntity<>(activityService.save(entity), HttpStatus.CREATED);
+
+        } catch (Exception e){
+            throw e;
+        }
     }
 
     @GetMapping()

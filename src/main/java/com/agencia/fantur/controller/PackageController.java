@@ -21,6 +21,7 @@ public class PackageController{
     @Autowired
     private BaseService<Package,Long> packageService;
 
+
     @Autowired
     private BaseService<StandardPackage,Long> standardPackageService;
 
@@ -28,13 +29,13 @@ public class PackageController{
     private BaseService<PremiumPackage,Long> premiumPackageService;
 
     @PostMapping("/standard")
-    public ResponseEntity<StandardPackage> create(@RequestBody StandardPackage entity) {
+    public ResponseEntity<StandardPackage> create(@RequestBody StandardPackage entity) throws Exception{
 
             return new ResponseEntity<>(standardPackageService.save(entity), HttpStatus.CREATED);
     }
 
     @PostMapping("/premium")
-    public ResponseEntity<PremiumPackage> create(@RequestBody PremiumPackage entity) {
+    public ResponseEntity<PremiumPackage> create(@RequestBody PremiumPackage entity) throws Exception{
         return new ResponseEntity<>(premiumPackageService.save(entity), HttpStatus.CREATED);
     }
 

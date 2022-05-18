@@ -17,10 +17,12 @@ public class TicketController implements BaseController<Ticket,Long>{
     //ticketService tendria que ser de la clase BaseServiceImpl pero tira error.
     @Autowired
     BaseService<Ticket,Long> ticketService;
-
+    @Autowired
+    TicketServiceImpl ticket;
     @PostMapping
     @Override
-    public ResponseEntity<Ticket> create(@RequestBody Ticket entity) {
+    public ResponseEntity<Ticket> create(@RequestBody Ticket entity) throws Exception {
+        System.out.println("TICKETT" + entity);
         return new ResponseEntity<>(ticketService.save(entity), HttpStatus.CREATED);
     }
 
@@ -30,16 +32,16 @@ public class TicketController implements BaseController<Ticket,Long>{
         return new ResponseEntity<>(ticketService.findAll(),HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
     @Override
     public ResponseEntity<Ticket> getById(@PathVariable Long id) {
         return new ResponseEntity<>(ticketService.findById(id),HttpStatus.OK);
     }
 
-/*    @GetMapping("/{destiny}")
-    public ResponseEntity<Ticket> getByDestiny (@PathVariable String destiny){
-        return new ResponseEntity<>(ticketService.getByDestiny(destiny),HttpStatus.OK);
-    }*/
+    @RequestMapping(value="/destiny/{destiny}", method = RequestMethod.GET)
+    public ResponseEntity<List<Ticket>> findByDestiny(@PathVariable String destiny){
+        return new ResponseEntity<>(ticket.findByTo(destiny),HttpStatus.OK);
+    }
 
     @Override
     public ResponseEntity<Ticket> update(Ticket entity, Long aLong) {

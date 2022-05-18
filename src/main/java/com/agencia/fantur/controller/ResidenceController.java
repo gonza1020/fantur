@@ -1,7 +1,9 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.Residence;
+import com.agencia.fantur.model.Ticket;
 import com.agencia.fantur.service.BaseService;
+import com.agencia.fantur.service.ResidenceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,11 @@ public class ResidenceController implements BaseController<Residence,Long> {
 
     @Autowired
     BaseService<Residence, Long> residenceService;
-
+    @Autowired
+    ResidenceServiceImpl residence;
     @PostMapping()
     @Override
-    public ResponseEntity<Residence> create( @RequestBody Residence entity) {
+    public ResponseEntity<Residence> create( @RequestBody Residence entity) throws Exception {
         return new ResponseEntity<>(residenceService.save(entity), HttpStatus.CREATED);
     }
 
@@ -30,6 +33,10 @@ public class ResidenceController implements BaseController<Residence,Long> {
     @Override
     public ResponseEntity<Residence> getById(@PathVariable  Long id) {
         return new ResponseEntity<>(residenceService.findById(id), HttpStatus.OK);
+    }
+    @GetMapping({"city/{destiny}"})
+    public ResponseEntity<List<Residence>> findByDestiny(@PathVariable String destiny){
+        return new ResponseEntity<>(residence.findByCity(destiny),HttpStatus.OK);
     }
     @PutMapping("{id}")
     @Override
