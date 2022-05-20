@@ -35,6 +35,19 @@ public class StandarPackageServiceImpl extends BaseServiceImpl<StandardPackage,L
         }
         return true;
     }
+
+    Double calculatePrice(StandardPackage p){
+        Double total = 0d;
+        for(Ticket t:p.getTickets()){
+            total += t.getPrice();
+        }
+        for (Activity a:p.getActivities()){
+            total += a.getPrice();
+        }
+        total += p.getResidence().getPrice();
+        return total;
+    }
+
     public StandardPackage save(StandardPackage p) throws Exception{
         try{
             if (!residenceService.checkResidence(p.getResidence().getId())){
@@ -46,7 +59,7 @@ public class StandarPackageServiceImpl extends BaseServiceImpl<StandardPackage,L
             if(!this.checkActivities(p.getActivities())){
                 throw new Exception("Actividades que no existen");
             }
-
+            p.setPrice(this.calculatePrice(p));
             return repository.save(p);
         }
         catch (Exception e){
