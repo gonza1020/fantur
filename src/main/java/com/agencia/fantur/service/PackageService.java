@@ -14,12 +14,13 @@ import java.util.List;
 @Service
 public class PackageService extends BaseServiceImpl<Package,Long> {
 
-    @Autowired
+   /* @Autowired
     ResidenceServiceImpl residenceService;
     @Autowired
     TicketServiceImpl ticketService;
     @Autowired
     ActivityServiceImpl activityService;
+
     boolean checkTickets(List<Ticket> t){
         for (Ticket ticket:t) {
             if(!ticketService.checkTickets((ticket.getId()))){
@@ -55,6 +56,6 @@ public class PackageService extends BaseServiceImpl<Package,Long> {
             throw e;
         }
 
-    }
+    }*/
 
 }

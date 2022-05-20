@@ -30,7 +30,6 @@ public class PackageController{
 
     @PostMapping("/standard")
     public ResponseEntity<StandardPackage> create(@RequestBody StandardPackage entity) throws Exception{
-
             return new ResponseEntity<>(standardPackageService.save(entity), HttpStatus.CREATED);
     }
 

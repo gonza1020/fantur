@@ -18,7 +18,6 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     BaseRepository<T, ID> repository;
 
 
-
     @Override
     public List<T> findAll() {
         return repository.findAll();
