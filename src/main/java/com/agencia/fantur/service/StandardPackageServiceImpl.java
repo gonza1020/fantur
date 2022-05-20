@@ -20,6 +20,7 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage>{
             total += activityService.findById(a.getId()).getPrice();
         }
         total += residenceService.findById(p.getResidence().getId()).getPrice();
+        total *= 1.20;
         return total;
     }
 
@@ -38,7 +39,7 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage>{
             return repository.save(p);
         }
         catch (Exception e){
-            throw e;
+            throw new Exception("No se pudo crear el paquete " + e.getMessage());
         }
 
     }

@@ -15,6 +15,7 @@ public abstract class Package extends BaseEntity<Long>  {
     private Double price;
 
     @OneToMany(targetEntity = Ticket.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "package_id",referencedColumnName = "id")
     private List<Ticket> tickets;
 
 
