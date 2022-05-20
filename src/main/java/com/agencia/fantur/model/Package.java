@@ -15,11 +15,6 @@ public abstract class Package extends BaseEntity<Long>  {
     private Double price;
 
     @OneToMany(targetEntity = Ticket.class, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "package_ticket",
-            joinColumns = @JoinColumn(name = "package_id"),
-            inverseJoinColumns = @JoinColumn(name = "ticket_id")
-    )
     private List<Ticket> tickets;
 
 
@@ -27,6 +22,7 @@ public abstract class Package extends BaseEntity<Long>  {
     @JoinColumn(name = "package_activitie", nullable = false,referencedColumnName = "id")
     private List<Activity> activities;
 
+    // Should be many to one
     @OneToOne(targetEntity = Residence.class, fetch = FetchType.EAGER)
     private Residence residence;
 

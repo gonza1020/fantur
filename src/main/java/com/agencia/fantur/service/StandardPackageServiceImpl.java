@@ -1,7 +1,5 @@
 package com.agencia.fantur.service;
-
 import com.agencia.fantur.model.Activity;
-
 import com.agencia.fantur.model.StandardPackage;
 import com.agencia.fantur.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,31 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StandarPackageServiceImpl extends BaseServiceImpl<StandardPackage,Long>{
+public class StandardPackageServiceImpl extends PackageService<StandardPackage>{
 
-    @Autowired
-    ResidenceServiceImpl residenceService;
-    @Autowired
-    TicketServiceImpl ticketService;
-    @Autowired
-    ActivityServiceImpl activityService;
-
-    boolean checkTickets(List<Ticket> t){
-        for (Ticket ticket:t) {
-            if(!ticketService.checkTickets((ticket.getId()))){
-                return false;
-            }
-        }
-        return true;
-    }
-    boolean checkActivities(List<Activity> a){
-        for (Activity act: a) {
-            if(!activityService.checkActivity(act.getId())){
-                return false;
-            }
-        }
-        return true;
-    }
 
     Double calculatePrice(StandardPackage p){
         Double total = 0d;
@@ -67,4 +42,5 @@ public class StandarPackageServiceImpl extends BaseServiceImpl<StandardPackage,L
         }
 
     }
+
 }
