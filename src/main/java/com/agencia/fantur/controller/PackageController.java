@@ -4,15 +4,14 @@ import com.agencia.fantur.model.Package;
 import com.agencia.fantur.model.PremiumPackage;
 import com.agencia.fantur.model.StandardPackage;
 import com.agencia.fantur.service.BaseService;
-import com.agencia.fantur.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Path;
+
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("api/packages")
