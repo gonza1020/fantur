@@ -1,6 +1,5 @@
 package com.agencia.fantur.model;
 
-import com.agencia.fantur.interfaces.IPackage;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -39,7 +39,7 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket,Long> {
                 throw new Exception("Verificar ciudades de destino u origen.");
 
         } catch (Exception e) {
-            throw new Exception("El ticket no pudo ser cargado");
+            throw new Exception("El ticket no pudo ser cargado. " + e.getMessage());
         }
 
     }
