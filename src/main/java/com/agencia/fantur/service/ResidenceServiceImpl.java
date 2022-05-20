@@ -24,10 +24,7 @@ public class ResidenceServiceImpl extends BaseServiceImpl<Residence,Long> {
 
     boolean checkResidence(Long id){
         Residence r = repository.findById(id).orElse(null);
-        if(r != null){
-            return true;
-        }
-        return false;
+        return r != null;
     }
     public Residence save(Residence r) throws Exception{
         try{

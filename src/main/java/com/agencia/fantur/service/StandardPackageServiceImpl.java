@@ -14,12 +14,12 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage>{
     Double calculatePrice(StandardPackage p){
         Double total = 0d;
         for(Ticket t:p.getTickets()){
-            total += t.getPrice();
+            total += ticketService.findById(t.getId()).getPrice();
         }
         for (Activity a:p.getActivities()){
-            total += a.getPrice();
+            total += activityService.findById(a.getId()).getPrice();
         }
-        total += p.getResidence().getPrice();
+        total += residenceService.findById(p.getResidence().getId()).getPrice();
         return total;
     }
 
