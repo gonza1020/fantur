@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-public abstract class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Long>{
+public abstract class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Long> {
 
     @Autowired
     ResidenceServiceImpl residenceService;
@@ -18,17 +18,18 @@ public abstract class PackageService<T extends BaseEntity> extends BaseServiceIm
     @Autowired
     ActivityServiceImpl activityService;
 
-    boolean checkTickets(List<Ticket> t){
-        for (Ticket ticket:t) {
-            if(!ticketService.checkTickets((ticket.getId()))){
+    boolean checkTickets(List<Ticket> t) {
+        for (Ticket ticket : t) {
+            if (!ticketService.checkTickets((ticket.getId()))) {
                 return false;
             }
         }
         return true;
     }
-    boolean checkActivities(List<Activity> a){
-        for (Activity act: a) {
-            if(!activityService.checkActivity(act.getId())){
+
+    boolean checkActivities(List<Activity> a) {
+        for (Activity act : a) {
+            if (!activityService.checkActivity(act.getId())) {
                 return false;
             }
         }

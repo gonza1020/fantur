@@ -17,7 +17,6 @@ public class ClientController implements BaseController<User, Long> {
     BaseService<User, Long> clientService;
 
     @PostMapping()
-    @Override
     public ResponseEntity<User> create(@RequestBody User entity) throws Exception {
         return new ResponseEntity<>(clientService.save(entity), HttpStatus.CREATED);
     }

@@ -14,16 +14,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/packages/standard")
-public class StandardPackageController implements  BaseController<StandardPackage,Long> {
+public class StandardPackageController implements BaseController<StandardPackage, Long> {
 
 
     @Autowired
-    private BaseService<StandardPackage,Long> standardPackageService;
+    private BaseService<StandardPackage, Long> standardPackageService;
 
 
     @Operation(summary = "Create a Premium Package")
     @PostMapping()
-    public ResponseEntity<StandardPackage> create(@RequestBody StandardPackage entity) throws Exception{
+    public ResponseEntity<StandardPackage> create(@RequestBody StandardPackage entity) throws Exception {
         return new ResponseEntity<>(standardPackageService.save(entity), HttpStatus.CREATED);
     }
 
@@ -37,13 +37,13 @@ public class StandardPackageController implements  BaseController<StandardPackag
     @Operation(summary = "Get package by its id")
     @GetMapping("{id}")
     public ResponseEntity<StandardPackage> getById(@PathVariable Long id) {
-        return new ResponseEntity<>(standardPackageService.findById(id),HttpStatus.OK);
+        return new ResponseEntity<>(standardPackageService.findById(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Update a package by its id")
     @PutMapping("{id}")
     public ResponseEntity<StandardPackage> update(StandardPackage entity, Long id) {
-        return new ResponseEntity<>(standardPackageService.update(entity,id),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(standardPackageService.update(entity, id), HttpStatus.ACCEPTED);
     }
     // Busqueda con varios filtros de paquete
 
