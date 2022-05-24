@@ -20,9 +20,10 @@ public class BookingService extends BaseServiceImpl<Booking, Long> {
             if (controlService.validate(entity)) {
                 entity.setCreationDate(new Date());
                 return super.save(entity);
-            }throw new Exception("No permitido");
+            }
+            throw new Exception("la solicitud de reserva no ha sido aprobada");
         } catch (Exception e) {
-            throw new Exception("No permitido " + e.getMessage());
+            throw new Exception("No permitido, " + e.getMessage());
         }
     }
 }
