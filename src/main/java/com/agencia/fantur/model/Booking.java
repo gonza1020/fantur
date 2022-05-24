@@ -23,7 +23,7 @@ public class Booking extends BaseEntity<Long>{
     @Column(name = "creation_date")
     private Date creationDate;
 
-    private Payment payment;
+    //private Payment payment;
 
 
 }
