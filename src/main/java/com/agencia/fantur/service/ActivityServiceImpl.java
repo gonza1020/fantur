@@ -1,7 +1,6 @@
 package com.agencia.fantur.service;
 
 import com.agencia.fantur.model.Activity;
-import com.agencia.fantur.model.City;
 import org.springframework.stereotype.Service;
 
 @Service

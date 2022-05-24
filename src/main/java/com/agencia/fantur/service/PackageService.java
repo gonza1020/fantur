@@ -1,11 +1,11 @@
 package com.agencia.fantur.service;
 
 
-import com.agencia.fantur.model.*;
-import com.agencia.fantur.model.Package;
+import com.agencia.fantur.model.Activity;
+import com.agencia.fantur.model.BaseEntity;
 import com.agencia.fantur.repository.PackageRepository;
+import com.agencia.fantur.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

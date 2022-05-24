@@ -1,6 +1,6 @@
 package com.agencia.fantur.controller;
 
-import com.agencia.fantur.model.User;
+import com.agencia.fantur.model.user.User;
 import com.agencia.fantur.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

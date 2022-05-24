@@ -1,7 +1,6 @@
 package com.agencia.fantur.service;
 
 
-import com.agencia.fantur.exception.ResourceNotFoundException;
 import com.agencia.fantur.model.BaseEntity;
 import com.agencia.fantur.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,6 @@
 package com.agencia.fantur.repository;
 
 import com.agencia.fantur.model.BaseEntity;
-import com.agencia.fantur.model.Package;
-import com.agencia.fantur.model.StandardPackage;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

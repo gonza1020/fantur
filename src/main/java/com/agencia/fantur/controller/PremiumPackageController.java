@@ -1,6 +1,5 @@
 package com.agencia.fantur.controller;
 
-import com.agencia.fantur.model.Package;
 import com.agencia.fantur.model.PremiumPackage;
 import com.agencia.fantur.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
