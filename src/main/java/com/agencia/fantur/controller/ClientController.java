@@ -35,7 +35,7 @@ public class ClientController implements BaseController<User, Long> {
 
     @PutMapping("{id}")
     @Override
-    public ResponseEntity<User> update(@RequestBody User entity, @PathVariable Long id) {
+    public ResponseEntity<User> update(@RequestBody User entity, @PathVariable Long id) throws Exception{
         return new ResponseEntity<>(clientService.update(entity, id), HttpStatus.OK);
     }
 

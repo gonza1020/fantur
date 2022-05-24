@@ -30,7 +30,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     }
 
     @Override
-    public T update(T entity, ID id) {
+    public T update(T entity, ID id) throws Exception{
         T existingEntity = findById(id);
         entity.setId(id);
         existingEntity = repository.save(entity);

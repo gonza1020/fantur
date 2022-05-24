@@ -39,7 +39,7 @@ public class ResidenceController implements BaseController<Residence,Long> {
     }
     @PutMapping("{id}")
     @Override
-    public ResponseEntity<Residence> update(@RequestBody  Residence entity, @PathVariable  Long id) {
+    public ResponseEntity<Residence> update(@RequestBody  Residence entity, @PathVariable  Long id) throws Exception{
         return new ResponseEntity<>(residenceService.update(entity, id), HttpStatus.OK);
     }
     @DeleteMapping("{id}")

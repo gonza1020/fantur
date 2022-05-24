@@ -36,7 +36,7 @@ public class BookingController implements BaseController<Booking,Long> {
     }
 
     @Override
-    public ResponseEntity<Booking> update(Booking entity, Long aLong) {
+    public ResponseEntity<Booking> update(Booking entity, Long aLong) throws Exception{
         return null;
     }
 

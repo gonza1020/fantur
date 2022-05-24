@@ -9,5 +9,5 @@ public interface BaseService<T, ID extends Serializable>{
     T save(T entity) throws Exception;
     T findById(ID id);
     void delete(ID id);
-    T update(T entity, ID id);
+    T update(T entity, ID id) throws Exception;
 }

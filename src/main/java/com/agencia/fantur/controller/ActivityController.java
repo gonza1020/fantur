@@ -41,7 +41,7 @@ public class ActivityController implements BaseController<Activity,Long> {
 
     @PutMapping("{id}")
     @Override
-    public ResponseEntity<Activity> update(@RequestBody Activity entity,@PathVariable Long id) {
+    public ResponseEntity<Activity> update(@RequestBody Activity entity,@PathVariable Long id) throws Exception{
         return new ResponseEntity<>(activityService.update(entity,id),HttpStatus.ACCEPTED);
     }
 

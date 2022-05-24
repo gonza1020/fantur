@@ -20,7 +20,7 @@ public abstract class Package extends BaseEntity<Long>  {
 
 
     @ManyToMany(targetEntity = Activity.class , fetch = FetchType.EAGER)
-    @JoinColumn(name = "package_activitie", nullable = false,referencedColumnName = "id")
+    @JoinColumn(name = "package_activities", nullable = false,referencedColumnName = "id")
     private List<Activity> activities;
 
     // Should be many to one

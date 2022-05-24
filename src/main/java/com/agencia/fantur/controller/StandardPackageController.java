@@ -3,6 +3,7 @@ package com.agencia.fantur.controller;
 import com.agencia.fantur.model.StandardPackage;
 import com.agencia.fantur.service.PackageService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -21,7 +23,7 @@ public class StandardPackageController implements BaseController<StandardPackage
     private PackageService<StandardPackage> standardPackageService;
 
 
-    @Operation(summary = "Create a Premium Package")
+    @Operation(summary = "Create a Standard Package")
     @PostMapping()
     public ResponseEntity<StandardPackage> create(@RequestBody StandardPackage entity) throws Exception {
         return new ResponseEntity<>(standardPackageService.save(entity), HttpStatus.CREATED);
@@ -42,9 +44,12 @@ public class StandardPackageController implements BaseController<StandardPackage
 
     @Operation(summary = "Update a package by id")
     @PutMapping("{id}")
-    public ResponseEntity<StandardPackage> update(StandardPackage entity, Long id) {
+    public ResponseEntity<StandardPackage> update(StandardPackage entity, Long id) throws Exception{
         return new ResponseEntity<>(standardPackageService.update(entity, id), HttpStatus.ACCEPTED);
     }
+
+
+
     // Busqueda con varios filtros de paquete
 
     @Operation(summary = "Delete a package by id")
@@ -57,5 +62,11 @@ public class StandardPackageController implements BaseController<StandardPackage
     @GetMapping("city/{city}")
     public ResponseEntity<List<StandardPackage>> getAllPackagesByCity(@PathVariable String city) {
         return new ResponseEntity<>(standardPackageService.findByCity(city), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Find a package by activity")
+    @GetMapping("act/{act}")
+    public ResponseEntity<Set<StandardPackage>> getPackageByActivity(@PathVariable String act){
+        return new ResponseEntity<>(standardPackageService.findByActivity(act.toUpperCase()),HttpStatus.OK);
     }
 }

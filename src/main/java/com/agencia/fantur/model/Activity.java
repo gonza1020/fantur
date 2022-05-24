@@ -22,4 +22,6 @@ public class Activity extends BaseEntity<Long> {
     @Column(name = "price", nullable = false)
     private double price;
 
+    @Column(name = "description")
+    private String description;
 }
