@@ -30,7 +30,7 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage> 
                 throw new Exception("No existe la residencia");
             }
             if (!this.checkTickets(p.getTickets())) {
-                throw new Exception("Estas agregando tickets que no existen.");
+                throw new Exception("Estas agregando tickets que no son validos.");
             }
             if (!this.checkActivities(p.getActivities())) {
                 throw new Exception("Actividades que no existen");
