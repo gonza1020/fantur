@@ -1,7 +1,7 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.StandardPackage;
-import com.agencia.fantur.service.BaseService;
+import com.agencia.fantur.service.PackageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class StandardPackageController implements BaseController<StandardPackage
 
 
     @Autowired
-    private BaseService<StandardPackage, Long> standardPackageService;
+    private PackageService<StandardPackage> standardPackageService;
 
 
     @Operation(summary = "Create a Premium Package")
@@ -34,22 +34,28 @@ public class StandardPackageController implements BaseController<StandardPackage
         return new ResponseEntity<>(standardPackageService.findAll(), HttpStatus.OK);
     }
 
-    @Operation(summary = "Get package by its id")
+    @Operation(summary = "Get package by id")
     @GetMapping("{id}")
     public ResponseEntity<StandardPackage> getById(@PathVariable Long id) {
         return new ResponseEntity<>(standardPackageService.findById(id), HttpStatus.OK);
     }
 
-    @Operation(summary = "Update a package by its id")
+    @Operation(summary = "Update a package by id")
     @PutMapping("{id}")
     public ResponseEntity<StandardPackage> update(StandardPackage entity, Long id) {
         return new ResponseEntity<>(standardPackageService.update(entity, id), HttpStatus.ACCEPTED);
     }
     // Busqueda con varios filtros de paquete
 
-    @Operation(summary = "Delete a package by its id")
+    @Operation(summary = "Delete a package by id")
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
         standardPackageService.delete(id);
+    }
+
+    @Operation(summary = "Find a package by city")
+    @GetMapping("city/{city}")
+    public ResponseEntity<List<StandardPackage>> getAllPackagesByCity(@PathVariable String city) {
+        return new ResponseEntity<>(standardPackageService.findByCity(city), HttpStatus.OK);
     }
 }

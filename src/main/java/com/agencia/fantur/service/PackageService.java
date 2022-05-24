@@ -3,6 +3,7 @@ package com.agencia.fantur.service;
 
 import com.agencia.fantur.model.*;
 import com.agencia.fantur.model.Package;
+import com.agencia.fantur.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,10 @@ public abstract class PackageService<T extends BaseEntity> extends BaseServiceIm
     TicketServiceImpl ticketService;
     @Autowired
     ActivityServiceImpl activityService;
+
+    @Autowired
+    PackageRepository<T> packageRepository;
+
 
     boolean checkTickets(List<Ticket> t) {
         for (Ticket ticket : t) {
@@ -36,5 +41,8 @@ public abstract class PackageService<T extends BaseEntity> extends BaseServiceIm
         return true;
     }
 
+    public List<T> findByCity(String city){
+        return packageRepository.findByCity(city);
+    }
 
 }

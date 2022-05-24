@@ -15,6 +15,7 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket,Long> {
     CityServiceImpl cityService;
     @Autowired
     TicketRepository ticketRepository;
+
     public List<Ticket> findByTo(String destiny){
         return ticketRepository.findByTo(destiny);
     }
