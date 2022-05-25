@@ -1,5 +1,6 @@
 package com.agencia.fantur.controller;
 
+import com.agencia.fantur.model.BaseEntity;
 import com.agencia.fantur.model.Package;
 import com.agencia.fantur.service.PackageService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +15,6 @@ import java.util.Set;
 @RestController
 @RequestMapping("api/package")
 public class GeneralPackageController {
-
     @Autowired
     PackageService<Package> packageService;
 
@@ -34,4 +34,6 @@ public class GeneralPackageController {
     public ResponseEntity<Set<Package>> getPackageByActivity(@PathVariable String act){
         return new ResponseEntity<>(packageService.findByActivity(act.toUpperCase()),HttpStatus.OK);
     }
+
+
 }

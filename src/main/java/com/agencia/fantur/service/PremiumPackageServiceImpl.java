@@ -11,6 +11,21 @@ public class PremiumPackageServiceImpl extends PackageService<PremiumPackage>{
 
     @Autowired
     MedInsuranceService medInsuranceService;
+    public PremiumPackage update(PremiumPackage p, Long id) throws Exception {
+        try{
+            if(!super.checks(p)) {
+                throw new Exception();
+            }
+            if(!super.checkPackageTickets(p)){
+                throw new Exception("Tickets en otro paquete");
+            }
+            p.setPrice(super.calculatePrice(p));
+            return super.update(p,id);
+        }
+        catch (Exception e){
+            throw new Exception(e) ;
+        }
+    }
     public PremiumPackage save(PremiumPackage p) throws Exception {
         Double precio ;
         try {

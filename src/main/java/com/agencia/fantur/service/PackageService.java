@@ -2,10 +2,15 @@ package com.agencia.fantur.service;
 
 import com.agencia.fantur.model.*;
 import com.agencia.fantur.model.Package;
+
+import com.agencia.fantur.model.Activity;
+import com.agencia.fantur.model.BaseEntity;
+import com.agencia.fantur.model.City;
 import com.agencia.fantur.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -22,10 +27,19 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
     @Autowired
     PackageRepository<T> packageRepository;
 
+    public boolean checkPackageTickets (Package p ) {
+        List <Ticket> tickets = p.getTickets();
+        for (Ticket t: tickets){
+            if(!ticketService.checkPackageTickets(t)) {
+                return false;
+            }
+        }
+        return true;
+    }
     public boolean checkResidence (Residence r ) {
         return residenceService.checkResidence(r.getId());
     }
-    public boolean checkTickets(List<Ticket> t) {
+/*    public boolean checkTickets(List<Ticket> t) {
         for (Ticket ticket : t) {
             if (!ticketService.checkTickets((ticket.getId()))) {
                 return false;
@@ -33,8 +47,32 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
         }
         return true;
     }
+*/
+    boolean checkTickets(List<Ticket> t) {
+        if (!ticketService.checkTickets(t.get(0).getId())) {
+            return false;
+        }
+        Ticket firstTicket = ticketService.findById(t.get(0).getId());
+        for (Ticket ticket : t) {
+            if (!ticketService.checkTickets((ticket.getId()))) {
+                return false;
+            } else {
+                ticket = ticketService.findById(ticket.getId());
+                if (compareTickets(ticket, firstTicket)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-    public boolean checkActivities(List<Activity> a) {
+
+    public boolean compareTickets(Ticket t1, Ticket t2){
+        return !t1.getReturnDate().equals(t2.getReturnDate()) || !t1.getDepartureDate().equals(t2.getDepartureDate()) ||
+                !t1.getFrom().equals(t2.getFrom()) || !t1.getTo().equals(t2.getTo()) || !t1.getTicketType().equals(t2.getTicketType());
+    }
+
+    boolean checkActivities(List<Activity> a) {
         for (Activity act : a) {
             if (!activityService.checkActivity(act.getId())) {
                 return false;
