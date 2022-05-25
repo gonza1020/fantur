@@ -53,9 +53,9 @@ public class StandardPackageController implements BaseController<StandardPackage
     public void delete(@PathVariable Long id) {
         standardPackageService.delete(id);
     }
-    /*
-    // Busqueda con varios filtros de paquete
 
+    // Busqueda con varios filtros de paquete
+    //esto tendria que ir a generalpackage pero no le estoy haciendo funcionar jaja
     @Operation(summary = "Find a package by city")
     @GetMapping("city/{city}")
     public ResponseEntity<List<StandardPackage>> getAllPackagesByCity(@PathVariable String city) {
@@ -68,5 +68,5 @@ public class StandardPackageController implements BaseController<StandardPackage
         return new ResponseEntity<>(standardPackageService.findByActivity(act.toUpperCase()),HttpStatus.OK);
     }
 
- */
+
 }

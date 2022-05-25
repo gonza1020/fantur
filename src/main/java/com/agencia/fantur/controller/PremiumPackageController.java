@@ -1,6 +1,7 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.PremiumPackage;
+import com.agencia.fantur.model.StandardPackage;
 import com.agencia.fantur.service.PremiumPackageServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/packages/premium")
@@ -49,5 +51,18 @@ public class PremiumPackageController implements BaseController<PremiumPackage,L
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
         premiumPackageService.delete(id);
+    }
+
+
+    @Operation(summary = "Find a premium package by city")
+    @GetMapping("city/{city}")
+    public ResponseEntity<List<PremiumPackage>> getAllPackagesByCity(@PathVariable String city) {
+        return new ResponseEntity<>(premiumPackageService.findByCity(city), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Find a premium package by activity")
+    @GetMapping("act/{act}")
+    public ResponseEntity<Set<PremiumPackage>> getPackageByActivity(@PathVariable String act){
+        return new ResponseEntity<>(premiumPackageService.findByActivity(act.toUpperCase()),HttpStatus.OK);
     }
 }
