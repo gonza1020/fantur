@@ -5,12 +5,10 @@ import com.agencia.fantur.model.Package;
 
 import com.agencia.fantur.model.Activity;
 import com.agencia.fantur.model.BaseEntity;
-import com.agencia.fantur.model.City;
 import com.agencia.fantur.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 

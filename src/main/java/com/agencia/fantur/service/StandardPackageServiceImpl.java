@@ -1,11 +1,7 @@
 package com.agencia.fantur.service;
 
-import com.agencia.fantur.model.Activity;
 import com.agencia.fantur.model.StandardPackage;
-import com.agencia.fantur.model.Ticket;
 import org.springframework.stereotype.Service;
-
-import java.text.DecimalFormat;
 
 
 @Service

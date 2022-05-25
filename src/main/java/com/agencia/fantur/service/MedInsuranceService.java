@@ -4,7 +4,6 @@ import com.agencia.fantur.model.MedicalInsurances;
 import com.agencia.fantur.model.PremiumPackage;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 @Service
 public class MedInsuranceService extends BaseServiceImpl<MedicalInsurances,Long>{
 

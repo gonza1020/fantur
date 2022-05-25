@@ -18,9 +18,8 @@ public interface TicketRepository extends BaseRepository<Ticket,Long>{
     List<Ticket> findByTo(@Param("destiny") String destiny);
 
     @Query(
-            value = "select * from package_ticket ta inner join ticket t\n" +
-                    "where t.id= ta.ticket_id\n" +
-                    " and ta.ticket_id = :id",
+            value = "select * from  ticket t\n" +
+                    "where t.id = :id and t.package_id IS NULL",
             nativeQuery = true
     )
     Ticket getPackageTickets(@Param("id") Long id);

@@ -2,7 +2,6 @@ package com.agencia.fantur.service;
 
 import com.agencia.fantur.model.MedicalInsurances;
 import com.agencia.fantur.model.PremiumPackage;
-import com.agencia.fantur.model.StandardPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +31,9 @@ public class PremiumPackageServiceImpl extends PackageService<PremiumPackage>{
             if(!super.checks(p)) {
                 System.out.println("ERROR ACA///");
                 throw new Exception();
+            }
+            if(!super.checkPackageTickets(p)){
+                throw new Exception("Tickets en otro paquete");
             }
             if(!medInsuranceService.checkMedInsurance(p)){
                 System.out.println("ERROR 2 + + ++ + + +" + p.getMedicalInsurances());

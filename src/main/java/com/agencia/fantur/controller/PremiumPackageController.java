@@ -1,7 +1,6 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.PremiumPackage;
-import com.agencia.fantur.model.StandardPackage;
 import com.agencia.fantur.service.PremiumPackageServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;

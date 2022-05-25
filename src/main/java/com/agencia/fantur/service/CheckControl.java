@@ -3,8 +3,6 @@ package com.agencia.fantur.service;
 import com.agencia.fantur.model.Booking;
 import com.agencia.fantur.model.ControlRequest;
 import com.agencia.fantur.model.ControlResponse;
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

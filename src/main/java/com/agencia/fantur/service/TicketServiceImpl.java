@@ -22,7 +22,8 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket,Long> {
 
     boolean checkPackageTickets(Ticket t) {
         Ticket tck = ticketRepository.getPackageTickets(t.getId());
-        return tck == null;
+        System.out.println(tck);
+        return tck != null;
     }
     boolean checkTickets(Long id){
         Ticket t = ticketRepository.findById(id).orElse(null);
