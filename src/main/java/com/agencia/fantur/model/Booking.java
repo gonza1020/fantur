@@ -14,14 +14,17 @@ import java.util.Date;
 @Table(name = "booking")
 public class Booking extends BaseEntity<Long>{
 
-    @OneToOne
+/*    @OneToOne
     private Client client;
 
     @OneToOne
     private Package aPackage;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private Date creationDate;*/
+     private Long cuit;
+     private Date creationDate;
+     private float price;
 
     //private Payment payment;
 

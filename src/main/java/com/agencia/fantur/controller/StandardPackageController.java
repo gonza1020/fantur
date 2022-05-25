@@ -44,19 +44,17 @@ public class StandardPackageController implements BaseController<StandardPackage
 
     @Operation(summary = "Update a package by id")
     @PutMapping("{id}")
-    public ResponseEntity<StandardPackage> update(StandardPackage entity, Long id) throws Exception{
+    public ResponseEntity<StandardPackage> update(@RequestBody  StandardPackage entity, @PathVariable  Long id) throws Exception{
         return new ResponseEntity<>(standardPackageService.update(entity, id), HttpStatus.ACCEPTED);
     }
-
-
-
-    // Busqueda con varios filtros de paquete
 
     @Operation(summary = "Delete a package by id")
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
         standardPackageService.delete(id);
     }
+    /*
+    // Busqueda con varios filtros de paquete
 
     @Operation(summary = "Find a package by city")
     @GetMapping("city/{city}")
@@ -69,4 +67,6 @@ public class StandardPackageController implements BaseController<StandardPackage
     public ResponseEntity<Set<StandardPackage>> getPackageByActivity(@PathVariable String act){
         return new ResponseEntity<>(standardPackageService.findByActivity(act.toUpperCase()),HttpStatus.OK);
     }
+
+ */
 }

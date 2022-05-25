@@ -12,7 +12,11 @@ import java.text.DecimalFormat;
 public class StandardPackageServiceImpl extends PackageService<StandardPackage> {
 
 
-    Double calculatePrice(StandardPackage p) {
+    public boolean checks(StandardPackage p) throws Exception{
+      return super.checks(p);
+    }
+
+    /*Double calculatePrice(StandardPackage p) {
         String strDouble;
         Double total = 0d;
         final Double fee = 1.20;
@@ -25,19 +29,13 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage> 
         total += residenceService.findById(p.getResidence().getId()).getPrice();
         total *= fee;
         return  total;
-    }
+    }*/
     public StandardPackage update(StandardPackage p, Long id) throws Exception {
         try{
-             if (!super.checkResidence(p.getResidence())) {
-                throw new Exception("No existe la residencia");
+            if(!this.checks(p)) {
+                throw new Exception();
             }
-            if (!super.checkTickets(p.getTickets())) {
-                throw new Exception("Estas agregando tickets que no existen.");
-            }
-            if (!super.checkActivities(p.getActivities())) {
-                throw new Exception("Actividades que no existen");
-            }
-            p.setPrice(this.calculatePrice(p));
+            p.setPrice(super.calculatePrice(p));
             return super.update(p,id);
         }
         catch (Exception e){
@@ -46,16 +44,10 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage> 
     }
     public StandardPackage save(StandardPackage p) throws Exception {
         try {
-            if (!residenceService.checkResidence(p.getResidence().getId())) {
-                throw new Exception("No existe la residencia");
+            if(!this.checks(p)) {
+                throw new Exception();
             }
-            if (!this.checkTickets(p.getTickets())) {
-                throw new Exception("Estas agregando tickets que no existen.");
-            }
-            if (!this.checkActivities(p.getActivities())) {
-                throw new Exception("Actividades que no existen");
-            }
-            p.setPrice(this.calculatePrice(p));
+            p.setPrice(super.calculatePrice(p));
             return repository.save(p);
         } catch (Exception e) {
             System.out.println("-----ERROR-------"+p.getPrice());

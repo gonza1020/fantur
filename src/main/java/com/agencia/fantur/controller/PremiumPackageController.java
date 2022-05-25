@@ -1,7 +1,7 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.PremiumPackage;
-import com.agencia.fantur.service.BaseService;
+import com.agencia.fantur.service.PremiumPackageServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,9 @@ import java.util.List;
 public class PremiumPackageController implements BaseController<PremiumPackage,Long>{
 
     @Autowired
-    private BaseService<PremiumPackage,Long> premiumPackageService;
+    private PremiumPackageServiceImpl premiumPackageService;
+    @Autowired
+    private GeneralPackageController packageController;
 
     @Operation(summary = "Create a Premium Package")
     @PostMapping()
@@ -30,7 +32,7 @@ public class PremiumPackageController implements BaseController<PremiumPackage,L
         return new ResponseEntity<>(premiumPackageService.findAll(), HttpStatus.OK);
     }
 
-    @Operation(summary = "Get package by its id")
+    @Operation(summary = "Get a premium package by its id")
     @GetMapping("{id}")
     public ResponseEntity<PremiumPackage> getById(@PathVariable Long id) {
         return new ResponseEntity<>(premiumPackageService.findById(id),HttpStatus.OK);

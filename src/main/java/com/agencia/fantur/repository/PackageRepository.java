@@ -12,7 +12,6 @@ import java.util.Set;
 @Repository
 public interface PackageRepository<T extends BaseEntity> extends BaseRepository<T,Long>{
     //hacer llamada a DB para buscar por destino
-
     @Query(
             value = "select * \n" +
                     "from package p inner join residence r   inner join city c \n" +
