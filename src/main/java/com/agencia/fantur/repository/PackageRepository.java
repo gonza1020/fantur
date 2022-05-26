@@ -26,4 +26,10 @@ public interface PackageRepository<T extends BaseEntity> extends BaseRepository<
             nativeQuery = true
     )
     Set<T> findByActivity (@Param("activity") String Activity);
+
+    @Query(
+            value = "select * from package p inner join standard_package sp on p.id = sp.id inner join premiumpackage pp on p.id=pp.id",
+            nativeQuery = true
+    )
+    Set<T> findAllPackage ();
 }

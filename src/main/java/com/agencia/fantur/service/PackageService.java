@@ -117,5 +117,6 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
         return packageRepository.findByActivity(activity);
     }
 
+    public Set<T> findAllPackages () { return packageRepository.findAllPackage();}
 
 }
