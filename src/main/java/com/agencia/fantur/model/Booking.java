@@ -2,26 +2,24 @@ package com.agencia.fantur.model;
 
 import com.agencia.fantur.model.user.Client;
 import lombok.Data;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.util.Date;
 
 
 @Data
 @Entity
 @Table(name = "booking")
-public class Booking extends BaseEntity<Long>{
+public class Booking<T> extends BaseEntity<Long>{
 
-    @OneToOne
-    private Client client;
+     @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
+     @JoinColumn(name = "client_id", nullable = false)
+     private Client client;
 
-    @OneToOne
-    private Package aPackage;
+     @OneToOne(targetEntity = Package.class, fetch = FetchType.EAGER)
+     private Package aPackage;
 
-    @Column(name = "creation_date")
-    private Date creationDate;
+     private float price;
 
     //private Payment payment;
 

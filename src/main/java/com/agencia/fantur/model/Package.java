@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "package")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Package extends BaseEntity<Long>  {
+public class Package extends BaseEntity<Long>  {
 
     @Column(name = "price", nullable = false)
     private Double price;
@@ -20,10 +20,9 @@ public abstract class Package extends BaseEntity<Long>  {
 
 
     @ManyToMany(targetEntity = Activity.class , fetch = FetchType.EAGER)
-    @JoinColumn(name = "package_activitie", nullable = false,referencedColumnName = "id")
+    @JoinColumn(name = "package_activities", nullable = false,referencedColumnName = "id")
     private List<Activity> activities;
 
-    // Should be many to one
     @OneToOne(targetEntity = Residence.class, fetch = FetchType.EAGER)
     private Residence residence;
 

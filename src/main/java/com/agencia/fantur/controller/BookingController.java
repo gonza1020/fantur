@@ -5,10 +5,7 @@ import com.agencia.fantur.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,22 +23,26 @@ public class BookingController implements BaseController<Booking,Long> {
     }
 
     @Override
+    @GetMapping()
     public ResponseEntity<List<Booking>> getAll() {
-        return null;
+        return new ResponseEntity<>(bookingService.findAll(),HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Booking> getById(Long aLong) {
-        return null;
+    @GetMapping("{id}")
+    public ResponseEntity<Booking> getById(Long id) {
+        return new ResponseEntity<>(bookingService.findById(id),HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Booking> update(Booking entity, Long aLong) {
-        return null;
+    @PutMapping("{id}")
+    public ResponseEntity<Booking> update(Booking entity, Long id) throws Exception{
+        return new ResponseEntity<>(bookingService.update(entity,id),HttpStatus.ACCEPTED);
     }
 
     @Override
-    public void delete(Long aLong) {
-
+    @DeleteMapping("{id}")
+    public void delete(Long id) {
+        bookingService.delete(id);
     }
 }

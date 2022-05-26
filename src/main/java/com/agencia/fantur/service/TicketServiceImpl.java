@@ -20,8 +20,13 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket,Long> {
         return ticketRepository.findByTo(destiny);
     }
 
+    boolean checkPackageTickets(Ticket t) {
+        Ticket tck = ticketRepository.getPackageTickets(t.getId());
+        System.out.println(tck);
+        return tck != null;
+    }
     boolean checkTickets(Long id){
-        Ticket t = repository.findById(id).orElse(null);
+        Ticket t = ticketRepository.findById(id).orElse(null);
         return t != null;
     }
 
@@ -33,7 +38,7 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket,Long> {
         try{
             if(cityService.checkCity(t.getTo().getId()) && cityService.checkCity(t.getFrom().getId())){
                 if(checkDates(t.getDepartureDate(),t.getReturnDate())) {
-                    return repository.save(t);
+                    return ticketRepository.save(t);
                 }
                 throw new Exception("Verificar fechas");
             }

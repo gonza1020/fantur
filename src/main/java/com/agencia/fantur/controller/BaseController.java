@@ -12,6 +12,6 @@ public interface BaseController<T, ID extends Serializable>{
      ResponseEntity<T> create(@RequestBody T entity) throws Exception;
      ResponseEntity<List<T>> getAll();
      ResponseEntity<T> getById(@PathVariable ID id);
-     ResponseEntity<T> update(@RequestBody T entity, @PathVariable ID id);
+     ResponseEntity<T> update(@RequestBody T entity, @PathVariable ID id) throws Exception;
      void delete(@PathVariable ID id);
 }

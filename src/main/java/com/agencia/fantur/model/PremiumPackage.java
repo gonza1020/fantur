@@ -9,7 +9,7 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "id")
 public class PremiumPackage extends Package{
 
-    @ManyToOne(targetEntity = MedicalInsurances.class,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = MedicalInsurances.class)
     @JoinColumn(name = "insurance_Id", nullable = false)
     private MedicalInsurances medicalInsurances;
 

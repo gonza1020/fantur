@@ -16,11 +16,3 @@ public class Client extends User {
     private long cuit;
 }
 
-
-/*
-       '{
-        "cuit": 20284435215,
-        "fecha_incio": "2022-04-23T11:11:43.7635-03:00",
-        "fecha_fin": "2022-04-23T11:11:43.7635-03:00",
-        "precio": 10000
-        }'*/
