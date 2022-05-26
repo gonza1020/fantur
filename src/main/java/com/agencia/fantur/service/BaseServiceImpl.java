@@ -1,7 +1,6 @@
 package com.agencia.fantur.service;
 
 
-import com.agencia.fantur.exception.ResourceNotFoundException;
 import com.agencia.fantur.model.BaseEntity;
 import com.agencia.fantur.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity, ID extends Serializa
     }
 
     @Override
-    public T update(T entity, ID id) {
+    public T update(T entity, ID id) throws Exception{
         T existingEntity = findById(id);
         entity.setId(id);
         existingEntity = repository.save(entity);

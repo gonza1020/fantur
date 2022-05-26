@@ -41,7 +41,7 @@ public class CityController implements BaseController<City,Long>{
     @Operation(summary = "Update a city by its id")
     @PutMapping("{id}")
     @Override
-    public ResponseEntity<City> update(City entity, Long id) {
+    public ResponseEntity<City> update(City entity, Long id) throws Exception {
         return new ResponseEntity<>(cityService.update(entity,id),HttpStatus.ACCEPTED);
     }
 

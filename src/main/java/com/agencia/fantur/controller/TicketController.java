@@ -1,7 +1,6 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.Ticket;
-import com.agencia.fantur.service.BaseService;
 import com.agencia.fantur.service.TicketServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

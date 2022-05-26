@@ -1,5 +1,7 @@
-package com.agencia.fantur.model;
+package com.agencia.fantur.model.user;
 
+import com.agencia.fantur.enums.Role;
+import com.agencia.fantur.model.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,7 +9,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name="user")
-public class User extends BaseEntity<Long> {
+public abstract class User extends BaseEntity<Long> {
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -19,10 +21,12 @@ public class User extends BaseEntity<Long> {
     private String userName;
     @Column(name = "password" , nullable = false)
     private String password;
-    @Column(name = "role_id" , nullable = false)
-    private String roleId;
-    @Column(name = "cuit", nullable = false)
-    private long cuit;
+
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+
     @Column(name = "phone", nullable = false)
     private long phone;
 }

@@ -2,7 +2,7 @@ package com.agencia.fantur.enums;
 
 public enum ActivityType {
     DESERT,
-    MATCH,
+    WORLDCUP,
     TOUR,
     BEACH
 }

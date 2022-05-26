@@ -1,10 +1,8 @@
 package com.agencia.fantur.repository;
 
-import com.agencia.fantur.model.City;
 import com.agencia.fantur.model.Ticket;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +17,10 @@ public interface TicketRepository extends BaseRepository<Ticket,Long>{
     )
     List<Ticket> findByTo(@Param("destiny") String destiny);
 
+    @Query(
+            value = "select * from  ticket t\n" +
+                    "where t.id = :id and t.package_id IS NULL",
+            nativeQuery = true
+    )
+    Ticket getPackageTickets(@Param("id") Long id);
 }

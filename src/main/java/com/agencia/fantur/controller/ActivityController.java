@@ -5,7 +5,6 @@ import com.agencia.fantur.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,7 +41,7 @@ public class ActivityController implements BaseController<Activity,Long> {
 
     @PutMapping("{id}")
     @Override
-    public ResponseEntity<Activity> update(@RequestBody Activity entity,@PathVariable Long id) {
+    public ResponseEntity<Activity> update(@RequestBody Activity entity,@PathVariable Long id) throws Exception{
         return new ResponseEntity<>(activityService.update(entity,id),HttpStatus.ACCEPTED);
     }
 

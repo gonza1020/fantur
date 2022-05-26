@@ -1,9 +1,6 @@
 package com.agencia.fantur.service;
 
-import com.agencia.fantur.exception.ResourceNotFoundException;
-import com.agencia.fantur.model.City;
 import com.agencia.fantur.model.Residence;
-import com.agencia.fantur.repository.CityRepository;
 import com.agencia.fantur.repository.ResidenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

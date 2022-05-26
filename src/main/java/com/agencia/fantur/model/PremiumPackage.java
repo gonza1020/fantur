@@ -3,14 +3,13 @@ package com.agencia.fantur.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class PremiumPackage extends Package{
 
-    @ManyToOne(targetEntity = MedicalInsurances.class,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = MedicalInsurances.class)
     @JoinColumn(name = "insurance_Id", nullable = false)
     private MedicalInsurances medicalInsurances;
 
