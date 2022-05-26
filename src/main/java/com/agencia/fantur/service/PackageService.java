@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Long> {
+public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Long> {
 
     @Autowired
     ResidenceServiceImpl residenceService;
@@ -25,27 +25,29 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
     @Autowired
     PackageRepository<T> packageRepository;
 
-    public boolean checkPackageTickets (Package p ) {
-        List <Ticket> tickets = p.getTickets();
-        for (Ticket t: tickets){
-            if(!ticketService.checkPackageTickets(t)) {
+    public boolean checkPackageTickets(Package p) {
+        List<Ticket> tickets = p.getTickets();
+        for (Ticket t : tickets) {
+            if (!ticketService.checkPackageTickets(t)) {
                 return false;
             }
         }
         return true;
     }
-    public boolean checkResidence (Residence r ) {
+
+    public boolean checkResidence(Residence r) {
         return residenceService.checkResidence(r.getId());
     }
-/*    public boolean checkTickets(List<Ticket> t) {
-        for (Ticket ticket : t) {
-            if (!ticketService.checkTickets((ticket.getId()))) {
-                return false;
+
+    /*    public boolean checkTickets(List<Ticket> t) {
+            for (Ticket ticket : t) {
+                if (!ticketService.checkTickets((ticket.getId()))) {
+                    return false;
+           }
             }
+            return true;
         }
-        return true;
-    }
-*/
+    */
     boolean checkTickets(List<Ticket> t) {
         if (!ticketService.checkTickets(t.get(0).getId())) {
             return false;
@@ -56,7 +58,7 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
                 return false;
             } else {
                 ticket = ticketService.findById(ticket.getId());
-                if (compareTickets(ticket, firstTicket)){
+                if (compareTickets(ticket, firstTicket)) {
                     return false;
                 }
             }
@@ -65,7 +67,7 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
     }
 
 
-    public boolean compareTickets(Ticket t1, Ticket t2){
+    public boolean compareTickets(Ticket t1, Ticket t2) {
         return !t1.getReturnDate().equals(t2.getReturnDate()) || !t1.getDepartureDate().equals(t2.getDepartureDate()) ||
                 !t1.getFrom().equals(t2.getFrom()) || !t1.getTo().equals(t2.getTo()) || !t1.getTicketType().equals(t2.getTicketType());
     }
@@ -79,7 +81,7 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
         return true;
     }
 
-    boolean checks (Package p) throws Exception{
+    boolean checks(Package p) throws Exception {
         if (!this.checkResidence(p.getResidence())) {
             throw new Exception("No existe la residencia");
         }
@@ -93,23 +95,22 @@ public  class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lo
     }
 
 
-    public Double calculatePrice (Package p) {
-            Double total = 0d;
-            final Double fee = 1.20;
-            for (Ticket t : p.getTickets()) {
-                total += ticketService.findById(t.getId()).getPrice();
-            }
-            for (Activity a : p.getActivities()) {
-                total += activityService.findById(a.getId()).getPrice();
-            }
-            total += residenceService.findById(p.getResidence().getId()).getPrice();
-            total *= fee;
-            return  total;
+    public Double calculatePrice(Package p) {
+        Double total = 0d;
+        final Double fee = 1.20;
+        for (Ticket t : p.getTickets()) {
+            total += ticketService.findById(t.getId()).getPrice();
+        }
+        for (Activity a : p.getActivities()) {
+            total += activityService.findById(a.getId()).getPrice();
+        }
+        total += residenceService.findById(p.getResidence().getId()).getPrice();
+        total *= fee;
+        return total;
     }
 
 
-
-    public List<T> findByCity(String city){
+    public List<T> findByCity(String city) {
         return packageRepository.findByCity(city);
     }
 

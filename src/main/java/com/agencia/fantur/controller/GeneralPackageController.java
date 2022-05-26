@@ -1,6 +1,7 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.Package;
+import com.agencia.fantur.repository.PackageRepositoryImpl;
 import com.agencia.fantur.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api/package")
 public class GeneralPackageController {
+
+
     @Autowired
-    PackageService<Package> packageService;
+    PackageRepositoryImpl packageService;
 
     @GetMapping()
     public ResponseEntity<List<Package>> getAllPackages() {

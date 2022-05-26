@@ -17,8 +17,6 @@ public class PremiumPackageController implements BaseController<PremiumPackage,L
 
     @Autowired
     private PremiumPackageServiceImpl premiumPackageService;
-    @Autowired
-    private GeneralPackageController packageController;
 
     @Operation(summary = "Create a Premium Package")
     @PostMapping()

@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "package")
 @Inheritance(strategy = InheritanceType.JOINED)
-public  abstract class Package extends BaseEntity<Long>  {
+public abstract class Package extends BaseEntity<Long>  {
 
     @Column(name = "price", nullable = false)
     private Double price;
