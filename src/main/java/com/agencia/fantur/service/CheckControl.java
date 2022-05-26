@@ -27,7 +27,7 @@ public class CheckControl implements ControlService {
     @Retryable(value = RuntimeException.class, maxAttempts = 5, backoff = @Backoff(3000))
     public boolean validate(Booking entity){
 
-        ControlRequest request = ControlRequest.builder().cuit(entity.getCuit())
+        ControlRequest request = ControlRequest.builder().cuit(entity.getClient().getCuit())
                 .fecha_incio(new Date()).fecha_fin(new Date()).precio(BigDecimal.valueOf(entity.getPrice()))
                 .build();
 
