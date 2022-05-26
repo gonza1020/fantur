@@ -1,6 +1,7 @@
 package com.agencia.fantur.service;
 
 import com.agencia.fantur.model.MedicalInsurances;
+import com.agencia.fantur.model.Package;
 import com.agencia.fantur.model.PremiumPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ public class PremiumPackageServiceImpl extends PackageService<PremiumPackage>{
 
     @Autowired
     MedInsuranceService medInsuranceService;
+
     public PremiumPackage update(PremiumPackage p, Long id) throws Exception {
         try{
             if(!super.checks(p)) {

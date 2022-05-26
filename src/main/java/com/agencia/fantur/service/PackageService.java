@@ -5,6 +5,7 @@ import com.agencia.fantur.model.Package;
 
 import com.agencia.fantur.model.Activity;
 import com.agencia.fantur.model.BaseEntity;
+import com.agencia.fantur.model.user.Client;
 import com.agencia.fantur.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,11 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
 
     @Autowired
     PackageRepository<T> packageRepository;
+
+    boolean checkPackage(Long id){
+        T p = repository.findById(id).orElse(null);
+        return p != null;
+    }
 
     public boolean checkPackageTickets(Package p) {
         List<Ticket> tickets = p.getTickets();

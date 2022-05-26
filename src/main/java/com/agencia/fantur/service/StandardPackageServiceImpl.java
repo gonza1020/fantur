@@ -1,5 +1,6 @@
 package com.agencia.fantur.service;
 
+import com.agencia.fantur.model.PremiumPackage;
 import com.agencia.fantur.model.StandardPackage;
 import org.springframework.stereotype.Service;
 

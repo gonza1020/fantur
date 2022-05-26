@@ -4,13 +4,12 @@ import com.agencia.fantur.model.user.Client;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @Data
 @Entity
 @Table(name = "booking")
-public class Booking<T> extends BaseEntity<Long>{
+public class Booking extends BaseEntity<Long>{
 
      @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
      @JoinColumn(name = "client_id", nullable = false)
