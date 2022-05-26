@@ -4,6 +4,7 @@ import com.agencia.fantur.model.user.Client;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Data
@@ -16,7 +17,10 @@ public class Booking extends BaseEntity<Long>{
      private Client client;
 
      @OneToOne(targetEntity = Package.class, fetch = FetchType.EAGER)
+     @JoinColumn(name = "package_id",referencedColumnName = "id")
      private Package aPackage;
+
+     private Date creationDate;
 
      private float price;
 

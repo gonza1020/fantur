@@ -25,10 +25,10 @@ public class BookingService extends BaseServiceImpl<Booking, Long> {
     PackageService<Package> packageService;
 
     private boolean checkClientBalance(Booking entity) {
-        if (!clientService.checkClient(entity.getClient().getId())){
+        if (!clientService.checkClient(entity.getClient().getId())) {
             return false;
         }
-        if (!packageService.checkPackage(entity.getAPackage().getId())){
+        if (!packageService.checkPackage(entity.getAPackage().getId())) {
             return false;
         }
         Package aPackage = packageService.findById(entity.getAPackage().getId());
@@ -42,7 +42,11 @@ public class BookingService extends BaseServiceImpl<Booking, Long> {
             if (!checkClientBalance(entity)) {
                 throw new Exception("Saldo insuficiente.");
             }
-            return super.save(entity);
+            if (controlService.validate(entity)) {
+                entity.setCreationDate(new Date());
+                return super.save(entity);
+            }
+            throw new Exception("la solicitud de reserva no ha sido aprobada por el organismo de control");
         } catch (Exception e) {
             throw new Exception("No se pudo registrar la reserva. " + e.getMessage());
         }

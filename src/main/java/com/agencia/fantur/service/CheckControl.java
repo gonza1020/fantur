@@ -28,7 +28,7 @@ public class CheckControl implements ControlService {
     public boolean validate(Booking entity){
 
         ControlRequest request = ControlRequest.builder().cuit(entity.getClient().getCuit())
-                .fecha_incio(new Date()).fecha_fin(new Date()).precio(BigDecimal.valueOf(entity.getPrice()))
+                .fecha_incio(new Date()).fecha_fin(new Date()).precio(BigDecimal.valueOf(entity.getAPackage().getPrice()))
                 .build();
 
         HttpHeaders headers = new HttpHeaders();
