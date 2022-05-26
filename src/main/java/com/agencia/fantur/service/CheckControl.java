@@ -46,9 +46,4 @@ public class CheckControl implements ControlService {
         return response.isAprobada();
 
     }
-
-    @Recover
-    public String recover() {
-        return "Try after some time";
-    }
 }
