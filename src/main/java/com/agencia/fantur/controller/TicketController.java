@@ -38,9 +38,10 @@ public class TicketController implements BaseController<Ticket,Long>{
         return new ResponseEntity<>(ticket.findByTo(destiny),HttpStatus.OK);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Ticket> update(@RequestBody Ticket entity, @PathVariable Long id) throws Exception {
 
-    public ResponseEntity<Ticket> update(Ticket entity, Long aLong) {
-        return null;
+        return new ResponseEntity<>(ticket.update(entity,id),HttpStatus.ACCEPTED);
     }
 
 

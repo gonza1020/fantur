@@ -29,13 +29,16 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
         T p = repository.findById(id).orElse(null);
         return p != null;
     }
-    boolean checkUpdatePackage(Package p) {
+    boolean checkUpdatePackage(Package p, Long id) {
         List<Ticket> tickets = p.getTickets();
         for (Ticket t: tickets) {
             Long tId = ticketService.getPackageId(t.getId());
-            if(tId != p.getId()){
-                return false;
+            if(tId != null){
+                if(tId != id){
+                    return false;
+                }
             }
+
         }
         return true;
     }

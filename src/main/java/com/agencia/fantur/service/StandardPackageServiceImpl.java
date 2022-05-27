@@ -13,7 +13,7 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage> 
             if(!super.checks(p)) {
                 throw new Exception();
             }
-            if(!checkUpdatePackage(p)){
+            if(!checkUpdatePackage(p,id)){
                 throw new Exception();
             }
             p.setPrice(super.calculatePrice(p));

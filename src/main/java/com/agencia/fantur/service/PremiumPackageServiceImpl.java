@@ -17,7 +17,7 @@ public class PremiumPackageServiceImpl extends PackageService<PremiumPackage>{
             if(!super.checks(p)) {
                 throw new Exception();
             }
-            if(!super.checkUpdatePackage(p)){
+            if(!super.checkUpdatePackage(p,id)){
                 throw new Exception("Tickets en otro paquete");
             }
             MedicalInsurances m = medInsuranceService.findById(p.getMedicalInsurances().getId());
