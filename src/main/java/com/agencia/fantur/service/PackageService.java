@@ -128,7 +128,21 @@ public class PackageService extends BaseServiceImpl<Package, Long> {
         total *= FEE;
         return total;
     }
-
+    public Package update(Package p, Long id) throws Exception {
+        try{
+            if(!this.checks(p)) {
+                throw new Exception();
+            }
+            if(!this.checkUpdatePackage(p,id)){
+                throw new Exception("Tickets en otro paquete");
+            }
+            p.setPrice(this.calculatePrice(p));
+            return super.update(p,id);
+        }
+        catch (Exception e){
+            throw new Exception(e) ;
+        }
+    }
     public Package save(Package p) throws Exception {
         try {
             if (!this.checks(p)) {
