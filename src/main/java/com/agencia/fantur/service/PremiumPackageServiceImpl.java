@@ -17,10 +17,12 @@ public class PremiumPackageServiceImpl extends PackageService<PremiumPackage>{
             if(!super.checks(p)) {
                 throw new Exception();
             }
-            if(!super.checkPackageTickets(p)){
+            if(!super.checkUpdatePackage(p,id)){
                 throw new Exception("Tickets en otro paquete");
             }
-            p.setPrice(super.calculatePrice(p));
+            MedicalInsurances m = medInsuranceService.findById(p.getMedicalInsurances().getId());
+            double precio = super.calculatePrice(p) + m.getPrice();
+            p.setPrice(precio);
             return super.update(p,id);
         }
         catch (Exception e){

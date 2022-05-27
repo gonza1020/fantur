@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "package")
 @Inheritance(strategy = InheritanceType.JOINED)
+
 public class Package extends BaseEntity<Long>  {
 
     @Column(name = "price", nullable = false)

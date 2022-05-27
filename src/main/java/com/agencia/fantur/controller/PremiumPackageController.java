@@ -39,7 +39,7 @@ public class PremiumPackageController implements BaseController<PremiumPackage,L
 
     @Operation(summary = "Update a package by its id")
     @PutMapping("{id}")
-    public ResponseEntity<PremiumPackage> update(PremiumPackage entity, Long id) throws Exception {
+    public ResponseEntity<PremiumPackage> update(@RequestBody PremiumPackage entity, @PathVariable Long id) throws Exception {
         return new ResponseEntity<>(premiumPackageService.update(entity,id),HttpStatus.ACCEPTED);
     }
     // Busqueda con varios filtros de paquete

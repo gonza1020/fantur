@@ -20,6 +20,11 @@ public class TicketServiceImpl extends BaseServiceImpl<Ticket,Long> {
         return ticketRepository.findByTo(destiny);
     }
 
+    public Long getPackageId(Long id){
+        Long idPackage = ticketRepository.getPackageId(id);
+        System.out.println("EROR---------"+idPackage);
+        return idPackage;
+    }
     boolean checkPackageTickets(Ticket t) {
         Ticket tck = ticketRepository.getPackageTickets(t.getId());
         System.out.println(tck);

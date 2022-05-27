@@ -5,7 +5,6 @@ import com.agencia.fantur.model.Package;
 
 import com.agencia.fantur.model.Activity;
 import com.agencia.fantur.model.BaseEntity;
-import com.agencia.fantur.model.user.Client;
 import com.agencia.fantur.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,19 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
         T p = repository.findById(id).orElse(null);
         return p != null;
     }
+    boolean checkUpdatePackage(Package p, Long id) {
+        List<Ticket> tickets = p.getTickets();
+        for (Ticket t: tickets) {
+            Long tId = ticketService.getPackageId(t.getId());
+            if(tId != null){
+                if(tId != id){
+                    return false;
+                }
+            }
 
+        }
+        return true;
+    }
     public boolean checkPackageTickets(Package p) {
         List<Ticket> tickets = p.getTickets();
         for (Ticket t : tickets) {
@@ -45,15 +56,6 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
         return residenceService.checkResidence(r.getId());
     }
 
-    /*    public boolean checkTickets(List<Ticket> t) {
-            for (Ticket ticket : t) {
-                if (!ticketService.checkTickets((ticket.getId()))) {
-                    return false;
-           }
-            }
-            return true;
-        }
-    */
     boolean checkTickets(List<Ticket> t) {
         if (!ticketService.checkTickets(t.get(0).getId())) {
             return false;
@@ -124,5 +126,6 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
         return packageRepository.findByActivity(activity);
     }
 
+    //public Set<T> findAllPackages () { return packageRepository.findAllPackage();}
 
 }
