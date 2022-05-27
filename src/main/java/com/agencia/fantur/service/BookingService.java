@@ -2,10 +2,7 @@ package com.agencia.fantur.service;
 
 import com.agencia.fantur.model.Booking;
 import com.agencia.fantur.model.Package;
-import com.agencia.fantur.model.PremiumPackage;
-import com.agencia.fantur.model.StandardPackage;
 import com.agencia.fantur.model.user.Client;
-import com.sun.xml.bind.api.impl.NameConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +19,7 @@ public class BookingService extends BaseServiceImpl<Booking, Long> {
     ClientServiceImpl clientService;
 
     @Autowired
-    PackageService<Package> packageService;
+    PackageService packageService;
 
     private boolean checkClientBalance(Booking entity) {
         if (!clientService.checkClient(entity.getClient().getId())) {
@@ -50,17 +47,5 @@ public class BookingService extends BaseServiceImpl<Booking, Long> {
         } catch (Exception e) {
             throw new Exception("No se pudo registrar la reserva. " + e.getMessage());
         }
-
-        /*
-        try {
-            if (controlService.validate(entity)) {
-                entity.setCreationDate(new Date());
-                return super.save(entity);
-            }
-            throw new Exception("la solicitud de reserva no ha sido aprobada");
-        } catch (Exception e) {
-            throw new Exception("No permitido, " + e.getMessage());
-        }
-        */
     }
 }

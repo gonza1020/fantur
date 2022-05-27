@@ -4,7 +4,6 @@ import com.agencia.fantur.model.*;
 import com.agencia.fantur.model.Package;
 
 import com.agencia.fantur.model.Activity;
-import com.agencia.fantur.model.BaseEntity;
 import com.agencia.fantur.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Long> {
+public class PackageService extends BaseServiceImpl<Package, Long> {
 
     @Autowired
     ResidenceServiceImpl residenceService;
@@ -23,10 +22,10 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
     ActivityServiceImpl activityService;
 
     @Autowired
-    PackageRepository<T> packageRepository;
+    PackageRepository packageRepository;
 
     boolean checkPackage(Long id){
-        T p = repository.findById(id).orElse(null);
+        Package p = packageRepository.findById(id).orElse(null);
         return p != null;
     }
     boolean checkUpdatePackage(Package p, Long id) {
@@ -118,11 +117,11 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
     }
 
 
-    public List<T> findByCity(String city) {
+    public List<Package> findByCity(String city) {
         return packageRepository.findByCity(city);
     }
 
-    public Set<T> findByActivity(String activity) {
+    public Set<Package> findByActivity(String activity) {
         return packageRepository.findByActivity(activity);
     }
 

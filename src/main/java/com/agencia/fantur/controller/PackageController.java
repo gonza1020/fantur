@@ -1,7 +1,6 @@
 package com.agencia.fantur.controller;
 
 import com.agencia.fantur.model.Package;
-import com.agencia.fantur.repository.PackageRepositoryImpl;
 import com.agencia.fantur.service.PackageService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +13,11 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("api/package")
-public class GeneralPackageController {
+public class PackageController implements BaseController<Package,Long>{
 
 
     @Autowired
-    PackageRepositoryImpl packageService;
+    PackageService packageService;
 
     @GetMapping()
     public ResponseEntity<List<Package>> getAllPackages() {
@@ -38,4 +37,29 @@ public class GeneralPackageController {
     }
 
 
+    @Override
+    @PostMapping
+    public ResponseEntity<Package> create(Package entity) throws Exception {
+        return new ResponseEntity<>(packageService.save(entity),HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<List<Package>> getAll() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Package> getById(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Package> update(Package entity, Long aLong) throws Exception {
+        return null;
+    }
+
+    @Override
+    public void delete(Long aLong) {
+
+    }
 }
