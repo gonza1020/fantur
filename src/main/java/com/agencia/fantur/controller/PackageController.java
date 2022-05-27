@@ -19,47 +19,50 @@ public class PackageController implements BaseController<Package,Long>{
     @Autowired
     PackageService packageService;
 
-    @GetMapping()
-    public ResponseEntity<List<Package>> getAllPackages() {
-        return new ResponseEntity<>(packageService.findAll(), HttpStatus.OK);
-    }
-
-    @Operation(summary = "Find a package by city")
+    @Operation(summary = "Get packages by city")
     @GetMapping("city/{city}")
     public ResponseEntity<List<Package>> getAllPackagesByCity(@PathVariable String city) {
         return new ResponseEntity<>(packageService.findByCity(city), HttpStatus.OK);
     }
 
-    @Operation(summary = "Find a package by activity")
+    @Operation(summary = "Get packages by activity")
     @GetMapping("act/{act}")
     public ResponseEntity<Set<Package>> getPackageByActivity(@PathVariable String act){
         return new ResponseEntity<>(packageService.findByActivity(act.toUpperCase()),HttpStatus.OK);
     }
 
-
+    @Operation(summary = "Create a new package")
     @Override
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Package> create(Package entity) throws Exception {
         return new ResponseEntity<>(packageService.save(entity),HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get all packages")
     @Override
+    @GetMapping()
     public ResponseEntity<List<Package>> getAll() {
-        return null;
+        return new ResponseEntity<>(packageService.findAll(), HttpStatus.OK);
     }
 
+    @Operation(summary = "Get a package by id")
     @Override
-    public ResponseEntity<Package> getById(Long aLong) {
-        return null;
+    @GetMapping("{id}")
+    public ResponseEntity<Package> getById(Long id) {
+        return new ResponseEntity<>(packageService.findById(id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Update a package by its id")
     @Override
-    public ResponseEntity<Package> update(Package entity, Long aLong) throws Exception {
-        return null;
+    @PutMapping("{id}")
+    public ResponseEntity<Package> update(Package entity, Long id) throws Exception {
+        return new ResponseEntity<>(packageService.update(entity, id), HttpStatus.ACCEPTED);
     }
 
+    @Operation(summary = "Delete a package by its id")
     @Override
-    public void delete(Long aLong) {
-
+    @DeleteMapping("{id}")
+    public void delete(Long id) {
+        packageService.delete(id);
     }
 }
