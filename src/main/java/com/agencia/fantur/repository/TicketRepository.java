@@ -23,4 +23,10 @@ public interface TicketRepository extends BaseRepository<Ticket,Long>{
             nativeQuery = true
     )
     Ticket getPackageTickets(@Param("id") Long id);
+
+    @Query(
+            value = "select t.id from ticket t where t.package_id = :id",
+            nativeQuery = true
+    )
+    Long getPackageId(@Param("id")Long id);
 }

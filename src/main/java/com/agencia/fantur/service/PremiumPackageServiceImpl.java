@@ -1,6 +1,7 @@
 package com.agencia.fantur.service;
 
 import com.agencia.fantur.model.MedicalInsurances;
+import com.agencia.fantur.model.Package;
 import com.agencia.fantur.model.PremiumPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +11,18 @@ public class PremiumPackageServiceImpl extends PackageService<PremiumPackage>{
 
     @Autowired
     MedInsuranceService medInsuranceService;
+
     public PremiumPackage update(PremiumPackage p, Long id) throws Exception {
         try{
             if(!super.checks(p)) {
                 throw new Exception();
             }
-            if(!super.checkPackageTickets(p)){
+            if(!super.checkUpdatePackage(p)){
                 throw new Exception("Tickets en otro paquete");
             }
-            p.setPrice(super.calculatePrice(p));
+            MedicalInsurances m = medInsuranceService.findById(p.getMedicalInsurances().getId());
+            double precio = super.calculatePrice(p) + m.getPrice();
+            p.setPrice(precio);
             return super.update(p,id);
         }
         catch (Exception e){

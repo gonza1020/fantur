@@ -1,5 +1,6 @@
 package com.agencia.fantur.service;
 
+import com.agencia.fantur.model.PremiumPackage;
 import com.agencia.fantur.model.StandardPackage;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,9 @@ public class StandardPackageServiceImpl extends PackageService<StandardPackage> 
     public StandardPackage update(StandardPackage p, Long id) throws Exception {
         try{
             if(!super.checks(p)) {
+                throw new Exception();
+            }
+            if(!checkUpdatePackage(p)){
                 throw new Exception();
             }
             p.setPrice(super.calculatePrice(p));

@@ -23,28 +23,27 @@ public class CheckControl implements ControlService {
     @Autowired
     RestTemplate clientRest;
 
+    private int attemps = 1;
+
     @Override
     @Retryable(value = RuntimeException.class, maxAttempts = 5, backoff = @Backoff(3000))
-    public boolean validate(Booking entity){
+    public boolean validate(Booking entity) {
 
-        ControlRequest request = ControlRequest.builder().cuit(entity.getCuit())
-                .fecha_incio(new Date()).fecha_fin(new Date()).precio(BigDecimal.valueOf(entity.getPrice()))
+        ControlRequest request = ControlRequest.builder().cuit(entity.getClient().getCuit())
+                .fecha_incio(new Date()).fecha_fin(new Date()).precio(BigDecimal.valueOf(entity.getAPackage().getPrice()))
                 .build();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<ControlRequest> httpEntity = new HttpEntity<>(request, headers);
-
+        System.out.println("Attemp: " + attemps + " at " + new Date());
         ResponseEntity<ControlResponse> responseEntity = clientRest.postForEntity("http://localhost:8080/operacion", httpEntity, ControlResponse.class);
 
-        if (responseEntity.getStatusCodeValue() == 201) {
-            ControlResponse response = responseEntity.getBody();
-            System.out.println(response.isAprobada());
-            return response.isAprobada();
-        }
-        System.out.println(responseEntity.getStatusCodeValue());
-        throw new RuntimeException("Servicio de turismo control no disponible");
+
+        ControlResponse response = responseEntity.getBody();
+        System.out.println(response.isAprobada());
+        return response.isAprobada();
 
     }
 
