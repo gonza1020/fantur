@@ -4,7 +4,6 @@ import com.agencia.fantur.model.*;
 import com.agencia.fantur.model.Package;
 
 import com.agencia.fantur.model.Activity;
-import com.agencia.fantur.model.BaseEntity;
 import com.agencia.fantur.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Long> {
+public class PackageService extends BaseServiceImpl<Package, Long> {
 
     @Autowired
     ResidenceServiceImpl residenceService;
@@ -21,9 +20,29 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
     TicketServiceImpl ticketService;
     @Autowired
     ActivityServiceImpl activityService;
-
     @Autowired
-    PackageRepository<T> packageRepository;
+    MedInsuranceService medicalInsurances;
+    @Autowired
+    PackageRepository packageRepository;
+
+    boolean checkPackage(Long id) {
+        Package p = packageRepository.findById(id).orElse(null);
+        return p != null;
+    }
+
+    boolean checkUpdatePackage(Package p, Long id) {
+        List<Ticket> tickets = p.getTickets();
+        for (Ticket t : tickets) {
+            Long tId = ticketService.getPackageId(t.getId());
+            if (tId != null) {
+                if (!tId.equals(id)) {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
 
     public boolean checkPackageTickets(Package p) {
         List<Ticket> tickets = p.getTickets();
@@ -39,15 +58,10 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
         return residenceService.checkResidence(r.getId());
     }
 
-    /*    public boolean checkTickets(List<Ticket> t) {
-            for (Ticket ticket : t) {
-                if (!ticketService.checkTickets((ticket.getId()))) {
-                    return false;
-           }
-            }
-            return true;
-        }
-    */
+    public boolean checkMedicalInsurance(MedicalInsurances m) {
+        return medicalInsurances.checkMedInsurance(m.getId());
+    }
+
     boolean checkTickets(List<Ticket> t) {
         if (!ticketService.checkTickets(t.get(0).getId())) {
             return false;
@@ -91,13 +105,19 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
         if (!this.checkActivities(p.getActivities())) {
             throw new Exception("Actividades que no existen");
         }
+        if (p.getMedicalInsurances() != null) {
+            if (!this.checkMedicalInsurance(p.getMedicalInsurances())) {
+                throw new Exception("Seguros que no existen");
+            }
+        }
+
         return true;
     }
 
 
     public Double calculatePrice(Package p) {
         Double total = 0d;
-        final Double fee = 1.20;
+        final double FEE = 1.20;
         for (Ticket t : p.getTickets()) {
             total += ticketService.findById(t.getId()).getPrice();
         }
@@ -105,18 +125,31 @@ public class PackageService<T extends BaseEntity> extends BaseServiceImpl<T, Lon
             total += activityService.findById(a.getId()).getPrice();
         }
         total += residenceService.findById(p.getResidence().getId()).getPrice();
-        total *= fee;
+        total *= FEE;
         return total;
     }
 
+    public Package save(Package p) throws Exception {
+        try {
+            if (!this.checks(p)) {
+                throw new Exception();
+            }
+            if (!this.checkPackageTickets(p)) {
+                throw new Exception("LOS TICKETS EN OTRO PAQUETE");
+            }
+            p.setPrice(this.calculatePrice(p));
+            return repository.save(p);
+        } catch (Exception e) {
+            System.out.println("-----ERROR-------");
+            throw new Exception("No se pudo crear el paquete " + e.getMessage());
+        }
+    }
 
-    public List<T> findByCity(String city) {
+    public List<Package> findByCity(String city) {
         return packageRepository.findByCity(city);
     }
 
-    public Set<T> findByActivity(String activity) {
+    public Set<Package> findByActivity(String activity) {
         return packageRepository.findByActivity(activity);
     }
-
-
 }

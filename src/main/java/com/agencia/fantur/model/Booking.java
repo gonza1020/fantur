@@ -10,18 +10,15 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "booking")
-public class Booking<T> extends BaseEntity<Long>{
+public class Booking extends BaseEntity<Long> {
 
-     @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
-     @JoinColumn(name = "client_id", nullable = false)
-     private Client client;
+    @ManyToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
-     @OneToOne(targetEntity = Package.class, fetch = FetchType.EAGER)
-     private Package aPackage;
-
-     private float price;
-
-    //private Payment payment;
-
+    @OneToOne(targetEntity = Package.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "package_id", referencedColumnName = "id")
+    private Package aPackage;
+    private Date creationDate;
 
 }
